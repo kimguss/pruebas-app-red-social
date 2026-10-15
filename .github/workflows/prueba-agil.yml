@@ -1,0 +1,25 @@
+name: Prueba agil de regresion
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  prueba-notificaciones:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar pytest
+        run: pip install pytest
+
+      - name: Ejecutar prueba de notificaciones duplicadas
+        run: pytest tests/test_notificaciones.py -v
